@@ -6,9 +6,9 @@ export default function Course() {
 	return (
 		<div>
 			<p className="text-center text-3xl font-bold">{course.name}</p>
-			<div className="relative mx-auto flex h-auto max-w-4xl flex-col items-center gap-3 p-4">
+			<div className="relative mx-auto flex h-auto max-w-4xl flex-col items-center gap-1 p-4">
 				{course.events.map((event) => (
-					<CourseEvent event={event} />
+					<CourseEvent key={event.description} event={event} />
 				))}
 			</div>
 		</div>

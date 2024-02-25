@@ -19,7 +19,7 @@ export default function CourseEvent({ event }: { event: CourseEvent }) {
 	);
 
 	return (
-		<div className="mx-auto flex w-full flex-col justify-between gap-2 p-4 text-left md:flex-row md:items-start md:gap-4">
+		<div className="mx-auto flex w-full flex-col justify-between gap-2 p-2 text-left md:flex-row md:items-start md:gap-4">
 			<div className="h-[20px] min-w-[80px] text-sm font-semibold">
 				<p className="md:py-0.5">{event.date}</p>
 			</div>
@@ -38,8 +38,8 @@ export default function CourseEvent({ event }: { event: CourseEvent }) {
 					</div>
 					<button className="ml-1 w-fit">
 						<StarIcon
-							className="h-5 w-5"
-							style={{ color: starred ? "#d0ba92" : "#f0f0f0" }}
+							className={`h-5 w-5 transition duration-100 ease-in ${!starred ? "rotate-0 text-white" : "rotate-[72deg] text-yellow-400"}`}
+							// style={{ color: starred ? "#d0ba92" : "#f0f0f0" }}
 							onClick={() => setStarred(!starred)}
 							id={event.description + event.date + "_star"}
 						/>
@@ -57,6 +57,7 @@ export default function CourseEvent({ event }: { event: CourseEvent }) {
 							<a
 								className="flex h-full w-full items-center justify-center"
 								href={event.videos ? event.videos : "#"}
+								target="_blank"
 							>
 								<VideoCameraIcon className={`h-4 w-4`} />
 							</a>
@@ -67,6 +68,7 @@ export default function CourseEvent({ event }: { event: CourseEvent }) {
 					<div>
 						<a
 							href={event.notes ? event.notes : "#"}
+							target="_blank"
 							className={`group grid aspect-square w-7 place-items-center rounded-md bg-white/10 ${
 								event.notes
 									? "transition duration-100 ease-in hover:text-red-400 hover:ring-2 hover:ring-red-600"
@@ -78,7 +80,7 @@ export default function CourseEvent({ event }: { event: CourseEvent }) {
 					</div>
 					{event.boilerexams && (
 						<div className="group grid aspect-square w-7 place-items-center rounded-md bg-white/10 transition duration-100 hover:ring-2 hover:ring-white">
-							<a href={event.boilerexams}>
+							<a href={event.boilerexams} target="_blank">
 								<img
 									className="w-5 group-hover:opacity-70"
 									src="/images/BXlogoSubscript.png"
