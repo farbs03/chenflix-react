@@ -24,7 +24,7 @@ export default function CourseEvent({ event }: { event: CourseEvent }) {
 				<p className="md:py-0.5">{event.date}</p>
 			</div>
 			<div className="flex flex-grow flex-col gap-2">
-				<div className="flex items-center justify-between">
+				<div className="flex flex-col justify-between gap-2 md:flex-row md:items-center">
 					<div className="flex items-center gap-2">
 						<div className="flex shrink-0 grow-0 flex-col items-center justify-center align-baseline">
 							<input
@@ -36,59 +36,65 @@ export default function CourseEvent({ event }: { event: CourseEvent }) {
 						</div>
 						<p>{event.description}</p>
 					</div>
-					<button className="ml-1 w-fit">
-						<StarIcon
-							className={`h-5 w-5 transition duration-100 ease-in ${!starred ? "rotate-0 text-white" : "rotate-[72deg] text-yellow-400"}`}
-							// style={{ color: starred ? "#d0ba92" : "#f0f0f0" }}
-							onClick={() => setStarred(!starred)}
-							id={event.description + event.date + "_star"}
-						/>
-					</button>
-				</div>
-				<div className="flex items-center space-x-2">
-					<div
-						className={`group grid aspect-square w-7 place-items-center rounded-md bg-white/10 ${
-							event.videos
-								? "transition duration-100 ease-in hover:text-red-400 hover:ring-2 hover:ring-red-600"
-								: "cursor-not-allowed opacity-70"
-						} `}
-					>
-						{event.videos ? (
-							<a
-								className="flex h-full w-full items-center justify-center"
-								href={event.videos ? event.videos : "#"}
-								target="_blank"
-							>
+					<div className="flex items-center gap-2">
+						<div
+							className={`group grid aspect-square w-7 place-items-center rounded-md bg-white/10 ${
+								event.videos
+									? "transition duration-100 ease-in hover:text-red-400 hover:ring-2 hover:ring-red-600"
+									: "cursor-not-allowed opacity-70"
+							} `}
+						>
+							{event.videos ? (
+								<a
+									className="flex h-full w-full items-center justify-center"
+									href={event.videos ? event.videos : "#"}
+									target="_blank"
+								>
+									<VideoCameraIcon className={`h-4 w-4`} />
+								</a>
+							) : (
 								<VideoCameraIcon className={`h-4 w-4`} />
-							</a>
-						) : (
-							<VideoCameraIcon className={`h-4 w-4`} />
-						)}
-					</div>
-					<div>
-						<a
-							href={event.notes ? event.notes : "#"}
-							target="_blank"
+							)}
+						</div>
+						<div
 							className={`group grid aspect-square w-7 place-items-center rounded-md bg-white/10 ${
 								event.notes
 									? "transition duration-100 ease-in hover:text-red-400 hover:ring-2 hover:ring-red-600"
 									: "cursor-not-allowed opacity-70"
 							} `}
 						>
-							<DocumentIcon className="h-4 w-4" />
-						</a>
-					</div>
-					{event.boilerexams && (
-						<div className="group grid aspect-square w-7 place-items-center rounded-md bg-white/10 transition duration-100 hover:ring-2 hover:ring-white">
-							<a href={event.boilerexams} target="_blank">
-								<img
-									className="w-5 group-hover:opacity-70"
-									src="/images/BXlogoSubscript.png"
-									alt="Logo"
-								/>
-							</a>
+							{event.notes ? (
+								<a
+									className="flex h-full w-full items-center justify-center"
+									href={event.notes ? event.notes : "#"}
+									target="_blank"
+								>
+									<DocumentIcon className={`h-4 w-4`} />
+								</a>
+							) : (
+								<DocumentIcon className={`h-4 w-4`} />
+							)}
 						</div>
-					)}
+						{event.boilerexams && (
+							<div className="group grid aspect-square w-7 place-items-center rounded-md bg-white/10 transition duration-100 hover:ring-2 hover:ring-white">
+								<a href={event.boilerexams} target="_blank">
+									<img
+										className="w-5 group-hover:opacity-70"
+										src="/images/BXlogoSubscript.png"
+										alt="Logo"
+									/>
+								</a>
+							</div>
+						)}
+						<button>
+							<StarIcon
+								className={`h-5 w-5 transition duration-100 ease-in ${!starred ? "rotate-0 text-white" : "rotate-[72deg] text-yellow-400"}`}
+								// style={{ color: starred ? "#d0ba92" : "#f0f0f0" }}
+								onClick={() => setStarred(!starred)}
+								id={event.description + event.date + "_star"}
+							/>
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
